@@ -13,7 +13,23 @@ PocketBase does not provide an official Docker image yet. This project fills tha
 
 ## Quick Start
 
-### 1. Create a `.env` file
+### 1. Create `docker-compose.yml` and `.env` file
+`docker-compose.yml`
+```yml
+services:
+  pocketbase:
+    image: prateekrajgautam/pocketbase:latest
+    container_name: pocketbase
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:8090:8090
+    volumes:
+      - ${PB_DATA_DIR:-./pb_data}:/pb_data
+    environment:
+      - EMAIL=${EMAIL:-admin@example.com}
+      - PASSWORD=${PASSWORD:-admin}
+```
+
 
 ```bash
 cp .env_format .env
